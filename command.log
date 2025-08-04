@@ -1,0 +1,39 @@
+# 20250804 masa /Users/masa/Desktop/shortcuts/github/test_app_runner_20250804
+bundle config set --local path 'vendor/bundle'
+bundle install
+rails new . --skip-active-record --skip-test
+docker build -t hello_world .
+
+aws ecr get-login-password --region eu-central-1 | docker login --username masa --password-stdin 415088266017.dkr.ecr.eu-central-1.amazonaws.com\n\n
+
+# for masa2
+aws configure
+# AWS Access Key ID [None]: AKIAWBJJQJMQ6PJMQJJ3
+# AWS Secret Access Key [None]: XXX
+# Default region name [None]: eu-central-1
+# Default output format [None]: json
+
+
+aws configure list
+#       Name                    Value             Type    Location
+#       ----                    -----             ----    --------
+#    profile                <not set>             None    None
+# access_key     ****************QJJ3 shared-credentials-file
+# secret_key     ****************zWu6 shared-credentials-file
+#     region             eu-central-1      config-file    ~/.aws/config
+aws ecr get-login-password --region eu-central-1 | docker login --username AWS --password-stdin 415088266017.dkr.ecr.eu-central-1.amazonaws.com\n
+# Login Succeeded
+docker tag hello_world 415088266017.dkr.ecr.eu-central-1.amazonaws.com/test/hello_world:latest
+docker push 415088266017.dkr.ecr.eu-central-1.amazonaws.com/test/hello_world:latest
+# The push refers to repository [415088266017.dkr.ecr.eu-central-1.amazonaws.com/test/hello_world]
+# 0769c47933fa: Pushed
+# 1ad53163d30a: Pushed
+# 028bae7ae04f: Pushed
+# b87e6ecd0979: Pushed
+# 6c24591fde52: Pushed
+# b5caf28c39de: Pushed
+# 38bd8df17b61: Pushed
+# 68fae4f7e27d: Pushed
+# 63689079949b: Pushed
+# c9b18059ed42: Pushed
+# latest: digest: sha256:795d0c83a83f83e35aee60aeabeb4a8f305ae0e30de190c8f526152c70ed3321 size: 2419
