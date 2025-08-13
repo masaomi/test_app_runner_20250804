@@ -21,7 +21,7 @@ aws configure list
 # access_key     ****************QJJ3 shared-credentials-file
 # secret_key     ****************zWu6 shared-credentials-file
 #     region             eu-central-1      config-file    ~/.aws/config
-aws ecr get-login-password --region eu-central-1 | docker login --username AWS --password-stdin 415088266017.dkr.ecr.eu-central-1.amazonaws.com\n
+aws ecr get-login-password --region eu-central-1 | docker login --username AWS --password-stdin 415088266017.dkr.ecr.eu-central-1.amazonaws.com
 # Login Succeeded
 docker tag hello_world 415088266017.dkr.ecr.eu-central-1.amazonaws.com/test/hello_world:latest
 docker push 415088266017.dkr.ecr.eu-central-1.amazonaws.com/test/hello_world:latest

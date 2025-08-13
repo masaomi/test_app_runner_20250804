@@ -35,6 +35,11 @@
 
 /log/*
 /tmp/*
-/vendor/bundle/
+/vendor/
+.github/
+.rubocop.yml
 /.DS_Store
+/.kamal/
+/log/
+/tmp/
 
