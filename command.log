@@ -37,3 +37,43 @@ docker push 415088266017.dkr.ecr.eu-central-1.amazonaws.com/test/hello_world:lat
 # 63689079949b: Pushed
 # c9b18059ed42: Pushed
 # latest: digest: sha256:795d0c83a83f83e35aee60aeabeb4a8f305ae0e30de190c8f526152c70ed3321 size: 2419
+
+
+# 20250813
+docker build -t hello_world .
+
+# local test
+docker run --rm -p 8080:8080 -e RAILS_MASTER_KEY=$(cat config/master.key) hello_world
+
+# push
+docker push 415088266017.dkr.ecr.eu-central-1.amazonaws.com/test/hello_world:latest
+# The push refers to repository [415088266017.dkr.ecr.eu-central-1.amazonaws.com/test/hello_world]
+# 155e0cfb9666: Preparing
+# b1c025078bf4: Preparing
+# 028bae7ae04f: Preparing
+# b87e6ecd0979: Preparing
+# 6c24591fde52: Preparing
+# b5caf28c39de: Waiting
+# 38bd8df17b61: Waiting
+# 68fae4f7e27d: Waiting
+# 63689079949b: Waiting
+# c9b18059ed42: Waiting
+# denied: Your authorization token has expired. Reauthenticate and try again.
+docker logout 415088266017.dkr.ecr.eu-central-1.amazonaws.com
+#Removing login credentials for 415088266017.dkr.ecr.eu-central-1.amazonaws.com
+aws ecr get-login-password --region eu-central-1 | \
+docker login --username AWS --password-stdin 415088266017.dkr.ecr.eu-central-1.amazonaws.com
+#Login Succeeded
+docker push 415088266017.dkr.ecr.eu-central-1.amazonaws.com/test/hello_world:latest
+#The push refers to repository [415088266017.dkr.ecr.eu-central-1.amazonaws.com/test/hello_world]
+#155e0cfb9666: Pushed
+#b1c025078bf4: Pushed
+#028bae7ae04f: Layer already exists
+#b87e6ecd0979: Layer already exists
+#6c24591fde52: Layer already exists
+#b5caf28c39de: Layer already exists
+#38bd8df17b61: Layer already exists
+#68fae4f7e27d: Layer already exists
+#63689079949b: Layer already exists
+#c9b18059ed42: Layer already exists
+#latest: digest: sha256:89296511fefe0d835cb2cc502b2108ce7cf93c12c131ba591ef1e7abd85b21a7 size: 2419

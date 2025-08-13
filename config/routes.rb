@@ -11,4 +11,8 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
+  Rails.application.routes.draw do
+    root to: proc { [200, {}, ["Hello, World!"]] }
+  end
+
 end
